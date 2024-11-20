@@ -13,3 +13,18 @@ const bands = [
     'Anywhere But Here',
     'An Old Dog',
 ];
+
+console.log('Band list before:');
+console.table(bands);
+
+// Sort the bands alphabetically without taking 'a', 'the' or 'an' into consideration
+const strip = bandName => {
+    return bandName.replace(/^(a |the |an )/i, '').trim();
+};
+const sortedBands = bands.sort((a, b) => (strip(a) > strip(b) ? 1 : -1));
+document.getElementById('bands').innerHTML = sortedBands
+    .map(band => `<li>${band}</li>`)
+    .join('');
+
+console.log('Band list after:');
+console.table(sortedBands);
